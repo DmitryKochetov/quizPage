@@ -88,9 +88,6 @@ export default {
     ...mapMutations(['UpdatePlayerStatus']),
     checkAnswer() {
       if (!this.modalOpened && this.currentAnswer && (this.currentQuestuonCounter <= Object.values(this.getQuestions).length)) {
-        // let json = JSON.stringify(this.getQuestions);
-        // console.log(json);
-        this.$store.dispatch('loadData')
         if (this.currentAnswer == this.currentQuestion.answer) {
           this.answerForModal = "Ответ верный"
           this.UpdatePlayerStatus({ id: this.question.id, answer: true })
@@ -101,7 +98,6 @@ export default {
           this.UpdatePlayerStatus({ id: this.question.id, answer: false })
           document.getElementById("modalPopup").style.display = "block";
           this.getPlayer.currentCoinsCounter -= 100;
-
         }
         this.currentAnswer = null;
         if (this.currentQuestuonCounter < Object.values(this.getQuestions).length) {
@@ -110,7 +106,6 @@ export default {
         setTimeout(() => {
           this.closePopup();
         }, 1000);
-        // console.log(this.getPlayer);
       }
     },
     openHint() {
