@@ -27,7 +27,12 @@
       <div class="cross"></div>
 
       <div class="questionImage">
-        <img class="questionImage__img" :src="currentQuestion.image" alt="">
+        <img class="questionImage__img" src="../assets/task_img.png" alt="">
+        
+        <!-- тут оставлен один и тот же файл для примера, поскольку есть проблема с локальными путями, 
+          что можно решить либо переводом файла в base64, либо хранить изображения на сервере и в json
+        отправлять ссылку -->
+        
       </div>
 
     </div>
@@ -87,7 +92,9 @@ export default {
   methods: {
     ...mapMutations(['UpdatePlayerStatus']),
     checkAnswer() {
+      // console.log(JSON.stringify(this.getQuestions));
       if (!this.modalOpened && this.currentAnswer && (this.currentQuestuonCounter <= Object.values(this.getQuestions).length)) {
+        console.log(this.currentQuestion.image);
         if (this.currentAnswer == this.currentQuestion.answer) {
           this.answerForModal = "Ответ верный"
           this.UpdatePlayerStatus({ id: this.question.id, answer: true })
@@ -102,7 +109,7 @@ export default {
         this.currentAnswer = null;
         if (this.currentQuestuonCounter < Object.values(this.getQuestions).length) {
         this.currentQuestuonCounter += 1;
-        }
+        } else this.currentQuestuonCounter = 1;
         setTimeout(() => {
           this.closePopup();
         }, 1000);

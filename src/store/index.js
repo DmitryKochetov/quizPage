@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import questions from '../store/data.json';
+import questions from "../store/data.json";
 
 export default createStore({
   state: {
@@ -10,6 +10,7 @@ export default createStore({
       currentCoinsCounter: 1000,
       playerAnswers: [],
     },
+
   },
   getters: {
     getPlayer(state) {
@@ -23,10 +24,8 @@ export default createStore({
     UpdatePlayerStatus(state, info) {
       state.currentPlayer.playerAnswers.push(info);
     },
-
   },
 
   modules: {},
-  actions: {
- },
+  actions: {},
 });
